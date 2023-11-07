@@ -48,17 +48,14 @@ public class GestorClinico {
         }
     }
 
-    public synchronized void AdicionaUtente(Utente t) throws UtenteJaExisteException {
-        if (this.fichasUtente.containsKey(t.getNumutente())) {
+    public synchronized void registaUtente(Utente u) throws UtenteJaExisteException {
+        if (this.dicTFichasMedicas.containsKey(u.getIdUtente())) {
             throw new UtenteJaExisteException();
         }
-        this.fichasUtente.put(t.getNumutente(), new FichaMedica(t));
+        this.fichasUtente.put(t.getIdUtente(), new FichaMedica(u));
     }
 
-    public synchronized void AdicionaUtente(String nome, String morada, String nif,
-                                            String cc, LocalDate dn, String numutente,
-                                            String telefone, String telefone_emergencia,
-                                            String email) throws UtenteJaExisteException {
+    public synchronized void registaUtente(int idUtente, String cc, String nome, String niss, String dataNascimento, String genero, String contacto, String email) throws UtenteJaExisteException {
         if (this.fichasUtente.containsKey(numutente)) {
             throw new UtenteJaExisteException();
         }
